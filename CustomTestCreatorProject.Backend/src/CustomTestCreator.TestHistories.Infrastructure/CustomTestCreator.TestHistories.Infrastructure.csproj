@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Folder Include="Repositories\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\CustomTestCreator.Core.Infrastructure\CustomTestCreator.Core.Infrastructure.csproj" />
+      <ProjectReference Include="..\CustomTestCreator.TestHistories.Domain\CustomTestCreator.TestHistories.Domain.csproj" />
+    </ItemGroup>
+
+</Project>

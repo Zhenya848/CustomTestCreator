@@ -1,0 +1,28 @@
+﻿services:
+  postgres:
+    container_name: CustomTestDb
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_DB: custom_test_project
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - 5438:5432
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      
+  minio:
+    container_name: minio
+    image: minio/minio
+    ports:
+      - 9000:9000
+      - 9001:9001
+    volumes:
+      - minio_data:/data
+    command: server --console-address ":9001" /data
+    restart: always
+        
+volumes:
+  postgres-data:
+  minio_data:  
