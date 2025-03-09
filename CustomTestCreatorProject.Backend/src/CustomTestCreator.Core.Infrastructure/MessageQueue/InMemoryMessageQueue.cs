@@ -1,5 +1,5 @@
 using System.Threading.Channels;
-using PetProject.Core.Application.Messaging;
+using CustomTestCreator.Core.Application.Messaging;
 
 namespace CustomTestCreator.Core.Infrastructure.MessageQueue;
 

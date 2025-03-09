@@ -3,7 +3,7 @@ using CustomTestCreator.Core.Application.Validation;
 using CustomTestCreator.SharedKernel;
 using FluentValidation;
 
-namespace PetProject.Volunteers.Application.Validators
+namespace CustomTestCreator.Clients.Application.Validators
 {
     public class UploadFilesToTasksCommandValidator : AbstractValidator<UploadFilesToTasksCommand>
     {

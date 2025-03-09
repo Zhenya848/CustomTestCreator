@@ -2,6 +2,7 @@ using CustomTestCreator.Clients.Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using Task = CustomTestCreator.Clients.Domain.Task;
 
 namespace CustomTestCreator.Clients.Infrastructure.DbContexts;
 
@@ -9,6 +10,7 @@ public class ClientDbContext(IConfiguration configuration) : DbContext
 {
     public DbSet<Client> Clients => Set<Client>();
     public DbSet<Test> Tests => Set<Test>();
+    public DbSet<Task> Tasks => Set<Task>();
     
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {

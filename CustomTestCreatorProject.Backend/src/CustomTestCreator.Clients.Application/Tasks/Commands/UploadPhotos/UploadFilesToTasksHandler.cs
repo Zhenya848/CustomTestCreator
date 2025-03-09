@@ -4,6 +4,7 @@ using CustomTestCreator.Clients.Application.Files.Commands.Create;
 using CustomTestCreator.Clients.Application.Providers;
 using CustomTestCreator.Clients.Application.Repositories;
 using CustomTestCreator.Core.Application.Abstractions;
+using CustomTestCreator.Core.Application.Messaging;
 using CustomTestCreator.Core.Application.Validation;
 using CustomTestCreator.SharedKernel;
 using CustomTestCreator.SharedKernel.Abstractions;
@@ -11,9 +12,6 @@ using CustomTestCreator.SharedKernel.ValueObjects;
 using CustomTestCreator.SharedKernel.ValueObjects.Id;
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
-using PetProject.Core.Application.Messaging;
-using PetProject.Core.ValueObjects;
-using PetProject.Volunteers.Application.Validators;
 using FileInfo = CustomTestCreator.SharedKernel.ValueObjects.FileInfo;
 
 namespace CustomTestCreator.Clients.Application.Tasks.Commands.UploadPhotos;

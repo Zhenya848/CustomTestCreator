@@ -6,6 +6,7 @@ using CustomTestCreator.SharedKernel;
 using CustomTestCreator.SharedKernel.ValueObjects.Id;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using Task = CustomTestCreator.Clients.Domain.Task;
 
 namespace CustomTestCreator.Clients.Infrastructure.Repositories;
 
@@ -61,5 +62,17 @@ public class ClientRepository : IClientRepository
         _logger.LogInformation("Deleted test {test} with id {id}", test.TestName, test.Id.Value);
         
         return test.Id;
+    }
+
+    public IEnumerable<Guid> DeleteTasks(IEnumerable<Task> tasks)
+    {
+        _context.Tasks.RemoveRange(tasks);
+
+        string taskNames = string.Join(", ", tasks.Select(t => t.TaskName));
+        var taskIds = tasks.Select(t => t.Id.Value);
+        
+        _logger.LogInformation("Deleted tasks {tasks} with ids {id}", taskNames, string.Join(", ", taskIds));
+        
+        return taskIds;
     }
 }
