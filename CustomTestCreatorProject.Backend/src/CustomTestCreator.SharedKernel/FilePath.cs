@@ -1,7 +1,6 @@
 ﻿using CSharpFunctionalExtensions;
-using CustomTestCreator.SharedKernel;
 
-namespace PetProject.Core.ValueObjects
+namespace CustomTestCreator.SharedKernel
 {
     public record FilePath
     {

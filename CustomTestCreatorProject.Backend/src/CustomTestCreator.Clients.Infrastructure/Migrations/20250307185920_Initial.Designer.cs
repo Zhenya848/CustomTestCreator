@@ -13,7 +13,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace CustomTestCreator.Clients.Infrastructure.Migrations
 {
     [DbContext(typeof(ClientDbContext))]
-    [Migration("20250306114210_Initial")]
+    [Migration("20250307185920_Initial")]
     partial class Initial
     {
         /// <inheritdoc />

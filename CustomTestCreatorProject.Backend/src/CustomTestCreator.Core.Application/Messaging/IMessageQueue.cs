@@ -1,4 +1,4 @@
-﻿namespace PetProject.Core.Application.Messaging
+﻿namespace CustomTestCreator.Core.Application.Messaging
 {
     public interface IMessageQueue<TMessage>
     {

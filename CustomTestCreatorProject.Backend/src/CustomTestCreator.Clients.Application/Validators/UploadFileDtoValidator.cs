@@ -3,7 +3,7 @@ using CustomTestCreator.SharedKernel;
 using CustomTestCreator.SharedKernel.ValueObjects.Dtos;
 using FluentValidation;
 
-namespace PetProject.Volunteers.Application.Validators
+namespace CustomTestCreator.Clients.Application.Validators
 {
     public class UploadFileDtoValidator : AbstractValidator<UploadFileDto>
     {

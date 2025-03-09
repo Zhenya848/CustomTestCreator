@@ -18,7 +18,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Tasks\Commands\Delete\" />
       <Folder Include="Tasks\Commands\Get\" />
       <Folder Include="Tasks\Commands\Update\" />
     </ItemGroup>
