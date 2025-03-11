@@ -17,7 +17,7 @@ public class DeleteTasksHandler : ICommandHandler<DeleteTasksCommand, Result<IEn
     private readonly IMessageQueue<IEnumerable<FileInfo>> _messageQueue;
 
     public DeleteTasksHandler(
-        IUnitOfWork unitOfWork, 
+        [FromKeyedServices(Modules.Client)]IUnitOfWork unitOfWork, 
         IClientRepository clientRepository,
         IMessageQueue<IEnumerable<FileInfo>> messageQueue)
     {
@@ -46,7 +46,7 @@ public class DeleteTasksHandler : ICommandHandler<DeleteTasksCommand, Result<IEn
             .GetTasksByIds(command.TasIds);
 
         var files = tasks
-            .Select(t => new FileInfo("photos", t.TaskMessage));
+            .Select(t => new FileInfo("photos", t.ImagePath));
         
         await _messageQueue.WriteAsync(files, cancellationToken);
         _clientRepository.DeleteTasks(tasks);

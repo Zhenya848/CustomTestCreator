@@ -25,6 +25,8 @@ public class GetClientHandler : IQueryHandler<Guid, Result<ClientDto, ErrorList>
         var clientQuery = _readDbContext.Clients;
         var clientResult = await clientQuery
             .FirstOrDefaultAsync(i => i.Id == id, cancellationToken);
+        
+        var tests = await _readDbContext.Tests.ToListAsync(cancellationToken);
 
         if (clientResult == null)
             return (ErrorList)Errors.General.NotFound(id);

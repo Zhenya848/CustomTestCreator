@@ -3,6 +3,7 @@ using CustomTestCreator.Clients.Application.Clients.Commands.Delete;
 using CustomTestCreator.Clients.Application.Clients.Commands.Get;
 using CustomTestCreator.Clients.Application.Clients.Commands.Update;
 using CustomTestCreator.Clients.Application.Tasks.Commands.Create;
+using CustomTestCreator.Clients.Application.Tasks.Commands.Delete;
 using CustomTestCreator.Clients.Application.Tasks.Commands.UploadPhotos;
 using CustomTestCreator.Clients.Application.Tests.Commands.Create;
 using CustomTestCreator.Clients.Application.Tests.Commands.Delete;
@@ -185,6 +186,24 @@ public class ClientsController : ApplicationController
         List<UploadFileDto> fileDtos = formFileProcessor.StartProcess(files);
         
         var command = new UploadFilesToTasksCommand(clientId, testId, taskIds, fileDtos);
+        
+        var result = await handler.Handle(command, cancellationToken);
+        
+        if (result.IsFailure)
+            return result.Error.ToResponse();
+        
+        return Ok(Envelope.Ok(result.Value));
+    }
+    
+    [HttpDelete("{clientId:guid}/{testId:guid}/task")]
+    public async Task<IActionResult> DeleteTasks(
+        [FromRoute] Guid clientId,
+        [FromRoute] Guid testId,
+        [FromForm] IEnumerable<Guid> taskIds,
+        [FromServices] DeleteTasksHandler handler,
+        CancellationToken cancellationToken = default)
+    {
+        var command = new DeleteTasksCommand(clientId, testId, taskIds);
         
         var result = await handler.Handle(command, cancellationToken);
         
