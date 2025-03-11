@@ -3,6 +3,7 @@ namespace CustomTestCreator.SharedKernel.ValueObjects.Dtos.ForQuery;
 public record TestDto
 {
     public Guid Id { get; set; }
+    public Guid ClientId { get; set; }
     
     public string TestName { get; set; }
 

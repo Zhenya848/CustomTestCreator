@@ -16,6 +16,8 @@ public class TestDtoConfiguration : IEntityTypeConfiguration<TestDto>
         
         builder.Property(tn => tn.TestName);
 
+        builder.Property(ci => ci.ClientId);
+
         builder.ComplexProperty(lt => lt.LimitTime, ltb =>
         {
             ltb.Property(s => s.Seconds).IsRequired();

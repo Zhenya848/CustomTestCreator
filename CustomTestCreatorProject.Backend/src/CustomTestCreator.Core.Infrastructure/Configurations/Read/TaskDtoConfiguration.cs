@@ -12,11 +12,13 @@ public class TaskDtoConfiguration : IEntityTypeConfiguration<TaskDto>
         builder.ToTable("Tasks");
         
         builder.HasKey(i => i.Id);
+
+        builder.Property(ti => ti.TestId);
         
         builder.Property(tn => tn.TaskName);
         builder.Property(tm => tm.TaskMessage);
         builder.Property(ra => ra.RightAnswer);
 
-        builder.Property(imi => imi.ImageId);
+        builder.Property(imp => imp.ImagePath);
     }
 }
