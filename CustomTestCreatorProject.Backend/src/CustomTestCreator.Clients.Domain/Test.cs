@@ -39,8 +39,20 @@ public class Test : SoftDeletableEntity<TestId>
     public void AddTasks(IEnumerable<Task> tasks) =>
         _tasks.AddRange(tasks);
 
-    public List<Task> GetTasksByIds(IEnumerable<Guid> TaskIds) =>
-        _tasks.Where(task => TaskIds.Contains(task.Id)).ToList();
+    public List<Task> GetTasksByIds(IEnumerable<Guid> TaskIds)
+    {
+        var result = new List<Task>();
+
+        foreach (var taskId in TaskIds)
+        {
+            var task = _tasks.FirstOrDefault(i => i.Id == taskId);
+            
+            if (task != null)
+                result.Add(task);
+        }
+        
+        return result;
+    }
     
     internal void UpdateInfo(
         string testName,
