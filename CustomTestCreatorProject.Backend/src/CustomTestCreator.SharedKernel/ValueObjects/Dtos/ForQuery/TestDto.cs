@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace CustomTestCreator.SharedKernel.ValueObjects.Dtos.ForQuery;
 
 public record TestDto
@@ -11,4 +13,7 @@ public record TestDto
     public bool IsTimeLimited { get; set; }
     
     public IEnumerable<string> Verdicts { get; set; }
+    
+    [NotMapped]
+    public TaskDto[] Tasks { get; set; }
 }
