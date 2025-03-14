@@ -7,5 +7,6 @@ public record TaskDto
     public string RightAnswer { get; set; }
 
     public Guid Id { get; set; }
-    public Guid ImageId { get; set; }
+    public Guid TestId { get; set; }
+    public string ImagePath { get; set; }
 }

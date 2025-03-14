@@ -23,14 +23,31 @@ public class GetClientHandler : IQueryHandler<Guid, Result<ClientDto, ErrorList>
         CancellationToken cancellationToken = default)
     {
         var clientQuery = _readDbContext.Clients;
-        var clientResult = await clientQuery
+        var testQuery = _readDbContext.Tests;
+        var tasksQuery = _readDbContext.Tasks;
+        
+        var client = await clientQuery
             .FirstOrDefaultAsync(i => i.Id == id, cancellationToken);
         
-        var tests = await _readDbContext.Tests.ToListAsync(cancellationToken);
-
-        if (clientResult == null)
+        if (client == null)
             return (ErrorList)Errors.General.NotFound(id);
         
-        return clientResult;
+        var tests = await testQuery
+            .Where(ci => ci.ClientId == id)
+            .ToListAsync(cancellationToken);
+        
+        var testIds = tests.Select(i => i.Id);
+        
+        var tasks = await tasksQuery
+            .Where(task => testIds.Contains(task.TestId))
+            .ToListAsync(cancellationToken);
+
+        tests.ForEach(test => test.Tasks = tasks
+            .Where(task => task.TestId == test.Id)
+            .ToArray());
+        
+        client.Tests = tests.ToArray();
+        
+        return client;
     }
 }
