@@ -11,7 +11,7 @@ public class TestConfiguration : IEntityTypeConfiguration<Test>
 {
     public void Configure(EntityTypeBuilder<Test> builder)
     {
-        builder.ToTable("Tests");
+        builder.ToTable("tests");
 
         builder.Property(i => i.Id).HasConversion(i => i.Value, value => TestId.Create(value));
         builder.HasKey(i => i.Id);

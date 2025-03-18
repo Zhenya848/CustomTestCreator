@@ -26,6 +26,8 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\CustomTestCreator.Accounts.Implementations\CustomTestCreator.Accounts.Implementation.csproj" />
+      <ProjectReference Include="..\CustomTestCreator.Accounts.Infrastructure\CustomTestCreator.Accounts.Infrastructure.csproj" />
       <ProjectReference Include="..\CustomTestCreator.Clients.Infrastructure\CustomTestCreator.Clients.Infrastructure.csproj" />
       <ProjectReference Include="..\CustomTestCreator.Clients.Presentation\CustomTestCreator.Clients.Presentation.csproj" />
       <ProjectReference Include="..\CustomTestCreator.TestHistories.Infrastructure\CustomTestCreator.TestHistories.Infrastructure.csproj" />

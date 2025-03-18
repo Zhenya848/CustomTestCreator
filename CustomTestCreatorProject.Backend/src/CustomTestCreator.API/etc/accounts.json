@@ -1,0 +1,58 @@
+{
+  "Roles" : {
+    "Participant" : [
+      "client.create",
+      "client.update",
+      "client.delete",
+      "client.get",
+      "test.create",
+      "test.update",
+      "test.delete",
+      "test.get",
+      "tasks.create",
+      "tasks.delete",
+      "tasks.get",
+      "tasks.upload_photos"
+    ],
+    
+    "Admin" : [
+      "client.create",
+      "client.update",
+      "client.delete",
+      "client.get",
+      "clients.get",
+      "test.create",
+      "test.update",
+      "test.delete",
+      "test.get",
+      "tasks.create",
+      "tasks.delete",
+      "tasks.get",
+      "tasks.upload_photos"
+    ]
+  },
+  
+  "Permissions" : {
+    "Clients" : [
+      "client.create",
+      "client.update",
+      "client.delete",
+      "client.get",
+      "clients.get"
+    ],
+    
+    "Tests" : [
+      "test.create",
+      "test.update",
+      "test.delete",
+      "test.get"
+    ],
+
+    "Tasks" : [
+      "tasks.create",
+      "tasks.delete",
+      "tasks.get",
+      "tasks.upload_photos"
+    ]
+  }
+}

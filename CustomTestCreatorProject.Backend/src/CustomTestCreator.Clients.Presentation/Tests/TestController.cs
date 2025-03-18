@@ -1,5 +1,6 @@
 using CustomTestCreator.Clients.Application.Tests.Commands.Get;
 using CustomTestCreator.Framework;
+using CustomTestCreator.Framework.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CustomTestCreator.Clients.Presentation.Tests;
@@ -7,6 +8,7 @@ namespace CustomTestCreator.Clients.Presentation.Tests;
 public class TestController : ApplicationController
 {
     [HttpGet("{testId:guid}")]
+    [Permission("test.get")]
     public async Task<ActionResult> GetById(
         [FromRoute] Guid testId,
         [FromServices] GetTestHandler handler,

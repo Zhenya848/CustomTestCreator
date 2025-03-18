@@ -9,7 +9,7 @@ public class TaskDtoConfiguration : IEntityTypeConfiguration<TaskDto>
 {
     public void Configure(EntityTypeBuilder<TaskDto> builder)
     {
-        builder.ToTable("Tasks");
+        builder.ToTable("tasks");
         
         builder.HasKey(i => i.Id);
 

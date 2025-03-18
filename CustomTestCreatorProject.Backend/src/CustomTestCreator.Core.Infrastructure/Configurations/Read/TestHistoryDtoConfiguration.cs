@@ -9,7 +9,7 @@ public class TestHistoryDtoConfiguration : IEntityTypeConfiguration<TestHistoryD
 {
     public void Configure(EntityTypeBuilder<TestHistoryDto> builder)
     {
-        builder.ToTable("TestHistories");
+        builder.ToTable("testHistories");
         
         builder.HasKey(i => i.Id);
         

@@ -6,4 +6,13 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="7.1.2" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\CustomTestCreator.Accounts.Application\CustomTestCreator.Accounts.Application.csproj" />
+      <ProjectReference Include="..\CustomTestCreator.Framework\CustomTestCreator.Framework.csproj" />
+    </ItemGroup>
+
 </Project>

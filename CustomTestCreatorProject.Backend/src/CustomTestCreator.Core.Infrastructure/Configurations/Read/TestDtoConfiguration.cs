@@ -10,7 +10,7 @@ public class TestDtoConfiguration : IEntityTypeConfiguration<TestDto>
 {
     public void Configure(EntityTypeBuilder<TestDto> builder)
     {
-        builder.ToTable("Tests");
+        builder.ToTable("tests");
         
         builder.HasKey(i => i.Id);
         
