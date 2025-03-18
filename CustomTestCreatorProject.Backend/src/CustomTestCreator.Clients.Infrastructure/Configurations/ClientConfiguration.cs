@@ -10,7 +10,7 @@ public class ClientConfiguration : IEntityTypeConfiguration<Client>
 {
     public void Configure(EntityTypeBuilder<Client> builder)
     {
-        builder.ToTable("Clients");
+        builder.ToTable("clients");
 
         builder.Property(i => i.Id).IsRequired().HasConversion(i => i.Value, value => ClientId.Create(value));
         builder.HasKey(i => i.Id);

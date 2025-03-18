@@ -10,6 +10,7 @@ using CustomTestCreator.Clients.Application.Tests.Commands.Delete;
 using CustomTestCreator.Clients.Application.Tests.Commands.Update;
 using CustomTestCreator.Clients.Presentation.Clients.Requests;
 using CustomTestCreator.Framework;
+using CustomTestCreator.Framework.Authorization;
 using CustomTestCreator.SharedKernel.ValueObjects.Dtos;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -20,6 +21,7 @@ namespace CustomTestCreator.Clients.Presentation.Clients;
 public class ClientsController : ApplicationController
 {
     [HttpPost]
+    [Permission("client.create")]
     public async Task<IActionResult> Create(
         [FromServices] CreateClientHandler handler,
         [FromBody] CreateClientRequest request,
@@ -39,6 +41,7 @@ public class ClientsController : ApplicationController
     }
     
     [HttpPut("{id:guid}/client-info")]
+    [Permission("client.update")]
     public async Task<IActionResult> Update(
         [FromRoute] Guid id,
         [FromServices] UpdateClientHandler handler,
@@ -60,6 +63,7 @@ public class ClientsController : ApplicationController
     }
     
     [HttpGet("{id:guid}")]
+    [Permission("client.get")]
     public async Task<ActionResult> Get(
         [FromRoute] Guid id,
         [FromServices] GetClientHandler handler,
@@ -74,6 +78,7 @@ public class ClientsController : ApplicationController
     }
 
     [HttpDelete("{id:guid}")]
+    [Permission("client.delete")]
     public async Task<IActionResult> Delete(
         [FromRoute] Guid id,
         [FromServices] DeleteClientHandler handler,
@@ -88,6 +93,7 @@ public class ClientsController : ApplicationController
     }
 
     [HttpPost("{clientId:guid}/test")]
+    [Permission("test.create")]
     public async Task<IActionResult> CreateTest(
         [FromRoute] Guid clientId,
         [FromServices] CreateTestHandler handler,
@@ -112,6 +118,7 @@ public class ClientsController : ApplicationController
     }
     
     [HttpPut("{clientId:guid}/{testId:guid}/test")]
+    [Permission("test.update")]
     public async Task<IActionResult> UpdateTest(
         [FromRoute] Guid clientId,
         [FromRoute] Guid testId,
@@ -138,6 +145,7 @@ public class ClientsController : ApplicationController
     }
 
     [HttpDelete("{clientId:guid}/{testId:guid}/test")]
+    [Permission("test.delete")]
     public async Task<IActionResult> DeleteTest(
         [FromRoute] Guid clientId,
         [FromRoute] Guid testId,
@@ -155,6 +163,7 @@ public class ClientsController : ApplicationController
     }
     
     [HttpPost("{clientId:guid}/{testId:guid}/task")]
+    [Permission("tasks.create")]
     public async Task<IActionResult> CreateTask(
         [FromRoute] Guid clientId,
         [FromRoute] Guid testId,
@@ -174,6 +183,7 @@ public class ClientsController : ApplicationController
 
     
     [HttpPost("{clientId:guid}/{testId:guid}/task/photos")]
+    [Permission("tasks.upload_photos")]
     public async Task<IActionResult> UploadPhotosToTasks(
         [FromRoute] Guid clientId,
         [FromRoute] Guid testId,
@@ -196,6 +206,7 @@ public class ClientsController : ApplicationController
     }
     
     [HttpDelete("{clientId:guid}/{testId:guid}/task")]
+    [Permission("tasks.delete")]
     public async Task<IActionResult> DeleteTasks(
         [FromRoute] Guid clientId,
         [FromRoute] Guid testId,

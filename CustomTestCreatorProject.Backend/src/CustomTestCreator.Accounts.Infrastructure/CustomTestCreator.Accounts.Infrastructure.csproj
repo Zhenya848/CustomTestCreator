@@ -6,4 +6,17 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.14" />
+      <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.14" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\CustomTestCreator.Accounts.Application\CustomTestCreator.Accounts.Application.csproj" />
+      <ProjectReference Include="..\CustomTestCreator.Accounts.Domain\CustomTestCreator.Accounts.Domain.csproj" />
+      <ProjectReference Include="..\CustomTestCreator.Accounts.Presentation\CustomTestCreator.Accounts.Presentation.csproj" />
+      <ProjectReference Include="..\CustomTestCreator.Core.Infrastructure\CustomTestCreator.Core.Infrastructure.csproj" />
+      <ProjectReference Include="..\CustomTestCreator.SharedKernel\CustomTestCreator.SharedKernel.csproj" />
+    </ItemGroup>
+
 </Project>

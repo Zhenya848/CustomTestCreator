@@ -6,4 +6,9 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\CustomTestCreator.Accounts.Domain\CustomTestCreator.Accounts.Domain.csproj" />
+      <ProjectReference Include="..\CustomTestCreator.Core.Application\CustomTestCreator.Core.Application.csproj" />
+    </ItemGroup>
+
 </Project>

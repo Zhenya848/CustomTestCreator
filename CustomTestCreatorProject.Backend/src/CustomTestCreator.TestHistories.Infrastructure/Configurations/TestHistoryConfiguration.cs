@@ -9,7 +9,7 @@ public class TestHistoryConfiguration : IEntityTypeConfiguration<TestHistory>
 {
     public void Configure(EntityTypeBuilder<TestHistory> builder)
     {
-        builder.ToTable("TestHistories");
+        builder.ToTable("testHistories");
         
         builder.Property(i => i.Id).HasConversion(id => id.Value, value => TestHistoryId.Create(value));   
         builder.HasKey(i => i.Id);

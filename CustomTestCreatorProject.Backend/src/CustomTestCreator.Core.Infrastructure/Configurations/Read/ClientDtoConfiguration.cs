@@ -9,7 +9,7 @@ public class ClientDtoConfiguration : IEntityTypeConfiguration<ClientDto>
 {
     public void Configure(EntityTypeBuilder<ClientDto> builder)
     {
-        builder.ToTable("Clients");
+        builder.ToTable("clients");
         
         builder.HasKey(x => x.Id);
         

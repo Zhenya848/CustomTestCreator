@@ -15,6 +15,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\CustomTestCreator.Accounts.Contracts\CustomTestCreator.Accounts.Contracts.csproj" />
       <ProjectReference Include="..\CustomTestCreator.SharedKernel\CustomTestCreator.SharedKernel.csproj" />
     </ItemGroup>
 

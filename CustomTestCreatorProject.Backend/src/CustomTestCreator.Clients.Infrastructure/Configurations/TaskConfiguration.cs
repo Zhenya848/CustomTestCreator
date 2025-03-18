@@ -10,7 +10,7 @@ public class TaskConfiguration : IEntityTypeConfiguration<Task>
 {
     public void Configure(EntityTypeBuilder<Task> builder)
     {
-        builder.ToTable("Tasks");
+        builder.ToTable("tasks");
 
         builder.Property(i => i.Id).HasConversion(i => i.Value, value => TaskId.Create(value));
         builder.HasKey(i => i.Id);

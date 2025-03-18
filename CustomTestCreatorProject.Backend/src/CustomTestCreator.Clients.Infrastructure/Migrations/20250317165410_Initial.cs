@@ -12,7 +12,7 @@ namespace CustomTestCreator.Clients.Infrastructure.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Clients",
+                name: "clients",
                 columns: table => new
                 {
                     id = table.Column<Guid>(type: "uuid", nullable: false),
@@ -28,7 +28,7 @@ namespace CustomTestCreator.Clients.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Tests",
+                name: "tests",
                 columns: table => new
                 {
                     id = table.Column<Guid>(type: "uuid", nullable: false),
@@ -48,13 +48,13 @@ namespace CustomTestCreator.Clients.Infrastructure.Migrations
                     table.ForeignKey(
                         name: "fk_tests_clients_client_id",
                         column: x => x.client_id,
-                        principalTable: "Clients",
+                        principalTable: "clients",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Tasks",
+                name: "tasks",
                 columns: table => new
                 {
                     id = table.Column<Guid>(type: "uuid", nullable: false),
@@ -62,47 +62,31 @@ namespace CustomTestCreator.Clients.Infrastructure.Migrations
                     task_message = table.Column<string>(type: "character varying(1000)", maxLength: 1000, nullable: false),
                     right_answer = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
                     image_path = table.Column<string>(type: "text", nullable: false),
+                    discriminator = table.Column<string>(type: "character varying(21)", maxLength: 21, nullable: false),
                     test_id = table.Column<Guid>(type: "uuid", nullable: true),
+                    answers = table.Column<string>(type: "jsonb", nullable: true),
                     is_deleted = table.Column<bool>(type: "boolean", nullable: false),
                     deletion_date = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Tasks", x => x.id);
+                    table.PrimaryKey("pk_tasks", x => x.id);
                     table.ForeignKey(
                         name: "fk_tasks_tests_test_id",
                         column: x => x.test_id,
-                        principalTable: "Tests",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "task_of_choosing_answer",
-                columns: table => new
-                {
-                    id = table.Column<Guid>(type: "uuid", nullable: false),
-                    answers = table.Column<string>(type: "jsonb", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_task_of_choosing_answer", x => x.id);
-                    table.ForeignKey(
-                        name: "fk_task_of_choosing_answer_tasks_id",
-                        column: x => x.id,
-                        principalTable: "Tasks",
+                        principalTable: "tests",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
                 name: "ix_tasks_test_id",
-                table: "Tasks",
+                table: "tasks",
                 column: "test_id");
 
             migrationBuilder.CreateIndex(
                 name: "ix_tests_client_id",
-                table: "Tests",
+                table: "tests",
                 column: "client_id");
         }
 
@@ -110,16 +94,13 @@ namespace CustomTestCreator.Clients.Infrastructure.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "task_of_choosing_answer");
+                name: "tasks");
 
             migrationBuilder.DropTable(
-                name: "Tasks");
+                name: "tests");
 
             migrationBuilder.DropTable(
-                name: "Tests");
-
-            migrationBuilder.DropTable(
-                name: "Clients");
+                name: "clients");
         }
     }
 }

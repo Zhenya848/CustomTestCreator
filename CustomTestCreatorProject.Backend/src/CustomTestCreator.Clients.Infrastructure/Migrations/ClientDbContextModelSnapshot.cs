@@ -59,7 +59,7 @@ namespace CustomTestCreator.Clients.Infrastructure.Migrations
                     b.HasKey("Id")
                         .HasName("pk_clients");
 
-                    b.ToTable("Clients", (string)null);
+                    b.ToTable("clients", (string)null);
                 });
 
             modelBuilder.Entity("CustomTestCreator.Clients.Domain.Task", b =>
@@ -71,6 +71,12 @@ namespace CustomTestCreator.Clients.Infrastructure.Migrations
                     b.Property<DateTime>("DeletionDate")
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("deletion_date");
+
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasMaxLength(21)
+                        .HasColumnType("character varying(21)")
+                        .HasColumnName("discriminator");
 
                     b.Property<string>("ImagePath")
                         .IsRequired()
@@ -103,14 +109,17 @@ namespace CustomTestCreator.Clients.Infrastructure.Migrations
                         .HasColumnType("uuid")
                         .HasColumnName("test_id");
 
-                    b.HasKey("Id");
+                    b.HasKey("Id")
+                        .HasName("pk_tasks");
 
                     b.HasIndex("test_id")
                         .HasDatabaseName("ix_tasks_test_id");
 
-                    b.ToTable("Tasks", (string)null);
+                    b.ToTable("tasks", (string)null);
 
-                    b.UseTptMappingStrategy();
+                    b.HasDiscriminator().HasValue("Task");
+
+                    b.UseTphMappingStrategy();
                 });
 
             modelBuilder.Entity("CustomTestCreator.Clients.Domain.Test", b =>
@@ -169,7 +178,7 @@ namespace CustomTestCreator.Clients.Infrastructure.Migrations
                     b.HasIndex("client_id")
                         .HasDatabaseName("ix_tests_client_id");
 
-                    b.ToTable("Tests", (string)null);
+                    b.ToTable("tests", (string)null);
                 });
 
             modelBuilder.Entity("CustomTestCreator.Clients.Domain.TaskOfChoosingAnswer", b =>
@@ -181,7 +190,9 @@ namespace CustomTestCreator.Clients.Infrastructure.Migrations
                         .HasColumnType("jsonb")
                         .HasColumnName("answers");
 
-                    b.ToTable("task_of_choosing_answer", (string)null);
+                    b.ToTable("tasks", (string)null);
+
+                    b.HasDiscriminator().HasValue("TaskOfChoosingAnswer");
                 });
 
             modelBuilder.Entity("CustomTestCreator.Clients.Domain.Task", b =>
@@ -200,16 +211,6 @@ namespace CustomTestCreator.Clients.Infrastructure.Migrations
                         .HasForeignKey("client_id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .HasConstraintName("fk_tests_clients_client_id");
-                });
-
-            modelBuilder.Entity("CustomTestCreator.Clients.Domain.TaskOfChoosingAnswer", b =>
-                {
-                    b.HasOne("CustomTestCreator.Clients.Domain.Task", null)
-                        .WithOne()
-                        .HasForeignKey("CustomTestCreator.Clients.Domain.TaskOfChoosingAnswer", "Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("fk_task_of_choosing_answer_tasks_id");
                 });
 
             modelBuilder.Entity("CustomTestCreator.Clients.Domain.Client", b =>
