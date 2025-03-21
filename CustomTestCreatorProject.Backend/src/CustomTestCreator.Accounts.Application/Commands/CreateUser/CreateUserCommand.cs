@@ -1,3 +1,3 @@
 namespace CustomTestCreator.Accounts.Application.Commands.CreateUser;
 
-public record CreateUserCommand(string Username, string Password);
+public record CreateUserCommand(string Username, string Email, string Password);

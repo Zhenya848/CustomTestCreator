@@ -136,6 +136,10 @@ namespace CustomTestCreator.Clients.Infrastructure.Migrations
                         .HasColumnType("boolean")
                         .HasColumnName("is_deleted");
 
+                    b.Property<bool>("IsPublished")
+                        .HasColumnType("boolean")
+                        .HasColumnName("is_published");
+
                     b.Property<bool>("IsTimeLimited")
                         .HasColumnType("boolean")
                         .HasColumnName("is_time_limited");

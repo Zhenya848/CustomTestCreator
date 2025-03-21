@@ -7,6 +7,7 @@ namespace CustomTestCreator.Clients.Domain;
 public class Test : SoftDeletableEntity<TestId>
 {
     public string TestName { get; private set; }
+    public bool IsPublished { get; private set; }
     
     public LimitTime LimitTime { get; private set; }
     public bool IsTimeLimited { get; private set; }
@@ -24,12 +25,14 @@ public class Test : SoftDeletableEntity<TestId>
     public Test(
         TestId id, 
         string testName, 
+        bool isPublished,
         LimitTime limitTime, 
         bool isTimeLimited, 
         IEnumerable<string>? verdictsList = null,
         IEnumerable<Task>? tasks = null) : base(id)
     {
         TestName = testName;
+        IsPublished = isPublished;
         LimitTime = limitTime;
         IsTimeLimited = isTimeLimited;
         _tasks = tasks?.ToList() ?? [];
@@ -56,11 +59,13 @@ public class Test : SoftDeletableEntity<TestId>
     
     internal void UpdateInfo(
         string testName,
+        bool isPublished,
         LimitTime limitTime,
         bool isTimeLimited,
         IEnumerable<string> verdictsList)
     {
         TestName = testName;
+        IsPublished = isPublished;
         LimitTime = limitTime;
         IsTimeLimited = isTimeLimited;
         VerdictsList = verdictsList.ToList();

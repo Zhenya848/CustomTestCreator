@@ -44,6 +44,7 @@ public class UpdateTestHandler : ICommandHandler<UpdateTestCommand, Result<Guid,
         var updateTestResult = clientResult.Value.UpdateTestInfo(
             command.TestId,
             command.TestName, 
+            command.IsPublished,
             limitTimeResult.Value, 
             command.IsTimeLimited, 
             command.VerdictsList);

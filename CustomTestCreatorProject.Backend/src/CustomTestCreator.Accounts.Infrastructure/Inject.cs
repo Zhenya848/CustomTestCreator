@@ -39,6 +39,8 @@ public static class Inject
         services.AddIdentityCore<User>(options =>
             {
                 options.Password.RequiredLength = 8;
+                options.Password.RequireNonAlphanumeric = false;
+                options.SignIn.RequireConfirmedEmail = true;
             })
             .AddRoles<Role>()
             .AddEntityFrameworkStores<AccountDbContext>();

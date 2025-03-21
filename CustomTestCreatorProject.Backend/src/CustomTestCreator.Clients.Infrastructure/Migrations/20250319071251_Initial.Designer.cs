@@ -13,7 +13,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace CustomTestCreator.Clients.Infrastructure.Migrations
 {
     [DbContext(typeof(ClientDbContext))]
-    [Migration("20250317165410_Initial")]
+    [Migration("20250319071251_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -138,6 +138,10 @@ namespace CustomTestCreator.Clients.Infrastructure.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("boolean")
                         .HasColumnName("is_deleted");
+
+                    b.Property<bool>("IsPublished")
+                        .HasColumnType("boolean")
+                        .HasColumnName("is_published");
 
                     b.Property<bool>("IsTimeLimited")
                         .HasColumnType("boolean")

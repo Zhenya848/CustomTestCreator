@@ -7,9 +7,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\CustomTestCreator.Accounts.Domain\CustomTestCreator.Accounts.Domain.csproj" />
+      <ProjectReference Include="..\CustomTestCreator.Clients.Application\CustomTestCreator.Clients.Application.csproj" />
       <ProjectReference Include="..\CustomTestCreator.Clients.Contracts\CustomTestCreator.Clients.Contracts.csproj" />
-      <ProjectReference Include="..\CustomTestCreator.Core.Application\CustomTestCreator.Core.Application.csproj" />
     </ItemGroup>
 
 </Project>

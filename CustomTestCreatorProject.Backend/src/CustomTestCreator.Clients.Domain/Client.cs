@@ -68,6 +68,7 @@ public class Client : SoftDeletableEntity<ClientId>
     public UnitResult<Error> UpdateTestInfo(
         Guid testId,
         string testName,
+        bool isPublished,
         LimitTime limitTime,
         bool isTimeLimited,
         IEnumerable<string> verdictsList)
@@ -79,6 +80,7 @@ public class Client : SoftDeletableEntity<ClientId>
         
         test.UpdateInfo(
             testName, 
+            isPublished,
             limitTime, 
             isTimeLimited, 
             verdictsList);

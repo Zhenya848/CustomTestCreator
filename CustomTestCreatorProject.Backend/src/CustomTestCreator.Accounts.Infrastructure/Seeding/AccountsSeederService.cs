@@ -3,6 +3,7 @@ using CustomTestCreator.Accounts.Domain.Constants;
 using CustomTestCreator.Accounts.Domain.User;
 using CustomTestCreator.Accounts.Infrastructure.DbContexts;
 using CustomTestCreator.Accounts.Infrastructure.Options;
+using CustomTestCreator.SharedKernel.ValueObjects.Id;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -46,7 +47,7 @@ public class AccountsSeederService(
 
         if (adminUser == null)
         {
-            adminUser = User.Create(adminRole, AdminOptions.ADMIN_USERNAME);
+            adminUser = User.Create(adminRole, AdminOptions.ADMIN_USERNAME, AdminOptions.ADMIN_EMAIL);
         
             await userManager.CreateAsync(adminUser, AdminOptions.ADMIN_PASSWORD);
         }

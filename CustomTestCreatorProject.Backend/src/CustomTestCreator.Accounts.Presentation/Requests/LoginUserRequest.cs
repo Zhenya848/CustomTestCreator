@@ -1,3 +1,3 @@
 namespace CustomTestCreator.Accounts.Presentation.Requests;
 
-public record LoginUserRequest(string Username, string Password);
+public record LoginUserRequest(string Email, string Password);

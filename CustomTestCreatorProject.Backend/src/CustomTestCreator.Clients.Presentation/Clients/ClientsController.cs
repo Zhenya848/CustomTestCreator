@@ -103,6 +103,7 @@ public class ClientsController : ApplicationController
         var command = new CreateTestCommand(
             clientId,
             request.TestName,
+            request.IsPublished,
             request.Seconds,
             request.Minutes,
             request.Hours,
@@ -130,6 +131,7 @@ public class ClientsController : ApplicationController
             testId,
             clientId,
             request.TestName,
+            request.IsPublished,
             request.Seconds,
             request.Minutes,
             request.Hours,

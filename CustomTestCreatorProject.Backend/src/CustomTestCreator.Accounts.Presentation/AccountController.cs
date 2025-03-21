@@ -14,13 +14,13 @@ public class AccountController : ApplicationController
         [FromServices] CreateUserHandler handler,
         CancellationToken cancellationToken = default)
     {
-        var command = new CreateUserCommand(request.Username, request.Password);
+        var command = new CreateUserCommand(request.Username, request.Email, request.Password);
         var result = await handler.Handle(command, cancellationToken);
 
         if (result.IsFailure)
             return result.Error.ToResponse();
 
-        return Created();
+        return Ok(Envelope.Ok(result.Value));
     }
 
     [HttpPost("login")]
@@ -29,13 +29,13 @@ public class AccountController : ApplicationController
         [FromServices] LoginUserHandler handler,
         CancellationToken cancellationToken = default)
     {
-        var command = new LoginUserCommand(request.Username, request.Password);
+        var command = new LoginUserCommand(request.Email, request.Password);
         
         var result = await handler.Handle(command, cancellationToken);
         
         if (result.IsFailure)
             return result.Error.ToResponse();
         
-        return Ok(result.Value);
+        return Ok(Envelope.Ok(result.Value));
     }
 }
