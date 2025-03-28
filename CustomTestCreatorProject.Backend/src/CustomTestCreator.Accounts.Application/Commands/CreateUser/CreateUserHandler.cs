@@ -39,7 +39,7 @@ public class CreateUserHandler : ICommandHandler<CreateUserCommand, Result<UserD
         CancellationToken cancellationToken = default)
     {
         if (string.IsNullOrWhiteSpace(command.Username))
-            return (ErrorList)Errors.General.ValueIsRequired("Email");
+            return (ErrorList)Errors.General.ValueIsRequired("Username");
         
         if (EmailValidator.IsVaild(command.Email) == false)
             return (ErrorList)Errors.General.ValueIsInvalid("Email");

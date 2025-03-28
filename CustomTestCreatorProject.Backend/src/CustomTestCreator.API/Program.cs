@@ -69,6 +69,13 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.MapGet("/u", () =>
+{
+    var users = new List<string> { "us1", "us2" };
+
+    return Results.Ok(users);
+});
+
 app.UseHttpsRedirection();
 app.MapControllers();
 app.Run();
