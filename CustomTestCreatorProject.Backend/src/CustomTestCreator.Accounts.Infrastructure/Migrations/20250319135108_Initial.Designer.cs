@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace CustomTestCreator.Accounts.Infrastructure.Migrations
 {
     [DbContext(typeof(AccountDbContext))]
-    [Migration("20250317163014_Initial")]
+    [Migration("20250319135108_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -25,7 +25,7 @@ namespace CustomTestCreator.Accounts.Infrastructure.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("CustomTestCreator.Accounts.Contracts.User.Permission", b =>
+            modelBuilder.Entity("CustomTestCreator.Accounts.Domain.User.Permission", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -53,7 +53,7 @@ namespace CustomTestCreator.Accounts.Infrastructure.Migrations
                     b.ToTable("permissions", (string)null);
                 });
 
-            modelBuilder.Entity("CustomTestCreator.Accounts.Contracts.User.Role", b =>
+            modelBuilder.Entity("CustomTestCreator.Accounts.Domain.User.Role", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -85,7 +85,7 @@ namespace CustomTestCreator.Accounts.Infrastructure.Migrations
                     b.ToTable("roles", (string)null);
                 });
 
-            modelBuilder.Entity("CustomTestCreator.Accounts.Contracts.User.RolePermission", b =>
+            modelBuilder.Entity("CustomTestCreator.Accounts.Domain.User.RolePermission", b =>
                 {
                     b.Property<Guid>("RoleId")
                         .HasColumnType("uuid")
@@ -104,7 +104,7 @@ namespace CustomTestCreator.Accounts.Infrastructure.Migrations
                     b.ToTable("role_permissions", (string)null);
                 });
 
-            modelBuilder.Entity("CustomTestCreator.Accounts.Contracts.User.User", b =>
+            modelBuilder.Entity("CustomTestCreator.Accounts.Domain.User.User", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -315,16 +315,16 @@ namespace CustomTestCreator.Accounts.Infrastructure.Migrations
                     b.ToTable("user_tokens", (string)null);
                 });
 
-            modelBuilder.Entity("CustomTestCreator.Accounts.Contracts.User.RolePermission", b =>
+            modelBuilder.Entity("CustomTestCreator.Accounts.Domain.User.RolePermission", b =>
                 {
-                    b.HasOne("CustomTestCreator.Accounts.Contracts.User.Permission", "Permission")
+                    b.HasOne("CustomTestCreator.Accounts.Domain.User.Permission", "Permission")
                         .WithMany()
                         .HasForeignKey("PermissionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("fk_role_permissions_permissions_permission_id");
 
-                    b.HasOne("CustomTestCreator.Accounts.Contracts.User.Role", "Role")
+                    b.HasOne("CustomTestCreator.Accounts.Domain.User.Role", "Role")
                         .WithMany("RolePermissions")
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -338,7 +338,7 @@ namespace CustomTestCreator.Accounts.Infrastructure.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
                 {
-                    b.HasOne("CustomTestCreator.Accounts.Contracts.User.Role", null)
+                    b.HasOne("CustomTestCreator.Accounts.Domain.User.Role", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -348,7 +348,7 @@ namespace CustomTestCreator.Accounts.Infrastructure.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<System.Guid>", b =>
                 {
-                    b.HasOne("CustomTestCreator.Accounts.Contracts.User.User", null)
+                    b.HasOne("CustomTestCreator.Accounts.Domain.User.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -358,7 +358,7 @@ namespace CustomTestCreator.Accounts.Infrastructure.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<System.Guid>", b =>
                 {
-                    b.HasOne("CustomTestCreator.Accounts.Contracts.User.User", null)
+                    b.HasOne("CustomTestCreator.Accounts.Domain.User.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -368,14 +368,14 @@ namespace CustomTestCreator.Accounts.Infrastructure.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<System.Guid>", b =>
                 {
-                    b.HasOne("CustomTestCreator.Accounts.Contracts.User.Role", null)
+                    b.HasOne("CustomTestCreator.Accounts.Domain.User.Role", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("fk_user_roles_roles_role_id");
 
-                    b.HasOne("CustomTestCreator.Accounts.Contracts.User.User", null)
+                    b.HasOne("CustomTestCreator.Accounts.Domain.User.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -385,7 +385,7 @@ namespace CustomTestCreator.Accounts.Infrastructure.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", b =>
                 {
-                    b.HasOne("CustomTestCreator.Accounts.Contracts.User.User", null)
+                    b.HasOne("CustomTestCreator.Accounts.Domain.User.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -393,7 +393,7 @@ namespace CustomTestCreator.Accounts.Infrastructure.Migrations
                         .HasConstraintName("fk_user_tokens_users_user_id");
                 });
 
-            modelBuilder.Entity("CustomTestCreator.Accounts.Contracts.User.Role", b =>
+            modelBuilder.Entity("CustomTestCreator.Accounts.Domain.User.Role", b =>
                 {
                     b.Navigation("RolePermissions");
                 });

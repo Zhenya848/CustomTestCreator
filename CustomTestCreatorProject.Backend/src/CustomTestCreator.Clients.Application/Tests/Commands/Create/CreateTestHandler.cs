@@ -44,6 +44,7 @@ public class CreateTestHandler : ICommandHandler<CreateTestCommand, Result<Guid,
         var test = new Test(
             TestId.AddNewId(), 
             command.TestName, 
+            command.IsPublished,
             limitTimeResult.Value, 
             command.IsTimeLimited,
             command.VerdictsList);

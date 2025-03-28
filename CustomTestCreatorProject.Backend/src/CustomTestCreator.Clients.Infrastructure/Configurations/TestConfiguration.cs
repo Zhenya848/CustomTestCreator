@@ -17,6 +17,7 @@ public class TestConfiguration : IEntityTypeConfiguration<Test>
         builder.HasKey(i => i.Id);
         
         builder.Property(tn => tn.TestName).IsRequired().HasMaxLength(Constants.MIN_LENGTH_OF_STRING_PROPERTIES);
+        builder.Property(ip => ip.IsPublished);
 
         builder.ComplexProperty(lt => lt.LimitTime, ltb =>
         {

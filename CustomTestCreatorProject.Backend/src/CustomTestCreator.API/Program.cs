@@ -4,6 +4,7 @@ using CustomTestCreator.Accounts.Infrastructure;
 using CustomTestCreator.Accounts.Infrastructure.Seeding;
 using CustomTestCreator.API.Middleware;
 using CustomTestCreator.Clients.Application;
+using CustomTestCreator.Clients.Implementation;
 using CustomTestCreator.Clients.Infrastructure;
 using CustomTestCreator.Core.Infrastructure;
 using CustomTestCreator.Framework;
@@ -52,6 +53,7 @@ builder.Services
     .AddFromAccountsContract()
     .AddFromTestHistoriesInfrastructure()
     .AddFromClientsApplication()
+    .AddFromClientsContract()
     .AddFromFramework();
 
 var app = builder.Build();
@@ -66,6 +68,13 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.MapGet("/u", () =>
+{
+    var users = new List<string> { "us1", "us2" };
+
+    return Results.Ok(users);
+});
 
 app.UseHttpsRedirection();
 app.MapControllers();

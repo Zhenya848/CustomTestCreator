@@ -33,6 +33,7 @@ namespace CustomTestCreator.Clients.Infrastructure.Migrations
                 {
                     id = table.Column<Guid>(type: "uuid", nullable: false),
                     test_name = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
+                    is_published = table.Column<bool>(type: "boolean", nullable: false),
                     is_time_limited = table.Column<bool>(type: "boolean", nullable: false),
                     verdicts = table.Column<string>(type: "jsonb", nullable: false),
                     client_id = table.Column<Guid>(type: "uuid", nullable: true),

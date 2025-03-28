@@ -1,3 +1,4 @@
+using CustomTestCreator.SharedKernel.ValueObjects.Id;
 using Microsoft.AspNetCore.Identity;
 
 namespace CustomTestCreator.Accounts.Domain.User;
@@ -12,6 +13,6 @@ public class User : IdentityUser<Guid>
         
     }
 
-    public static User Create(Role role, string userName) =>
-        new User { UserName = userName, _roles = [role] };
+    public static User Create(Role role, string username, string email) =>
+        new User { UserName = username, Email = email, _roles = [role] };
 }

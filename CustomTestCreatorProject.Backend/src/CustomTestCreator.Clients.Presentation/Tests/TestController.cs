@@ -1,4 +1,6 @@
 using CustomTestCreator.Clients.Application.Tests.Commands.Get;
+using CustomTestCreator.Clients.Application.Tests.Queries;
+using CustomTestCreator.Clients.Presentation.Tests.Requests;
 using CustomTestCreator.Framework;
 using CustomTestCreator.Framework.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -20,5 +22,19 @@ public class TestController : ApplicationController
             return petResult.Error.ToResponse();
         
         return Ok(Envelope.Ok(petResult.Value));
+    }
+
+    [HttpGet("tests")]
+    [Permission("tests.get")]
+    public async Task<ActionResult> GetTestsByPagination(
+        [FromQuery] GetTestsWithPaginationRequest request,
+        [FromServices] GetTestsWithPaginationHandler handler,
+        CancellationToken cancellationToken = default)
+    {
+        var query = new GetTestsWithPaginationQuery(request.Page, request.PageSize);
+        
+        var result = await handler.Handle(query, cancellationToken);
+        
+        return Ok(Envelope.Ok(result));
     }
 }

@@ -15,6 +15,7 @@ public class TestDtoConfiguration : IEntityTypeConfiguration<TestDto>
         builder.HasKey(i => i.Id);
         
         builder.Property(tn => tn.TestName);
+        builder.Property(ip => ip.IsPublished);
 
         builder.Property(ci => ci.ClientId);
 

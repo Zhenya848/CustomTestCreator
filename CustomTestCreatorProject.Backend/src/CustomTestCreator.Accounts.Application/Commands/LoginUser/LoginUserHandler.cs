@@ -1,4 +1,5 @@
 using CSharpFunctionalExtensions;
+using CustomTestCreator.Accounts.Domain;
 using CustomTestCreator.Accounts.Domain.User;
 using CustomTestCreator.SharedKernel;
 using CustomTestCreator.SharedKernel.Abstractions;
@@ -7,7 +8,7 @@ using Microsoft.Extensions.Logging;
 
 namespace CustomTestCreator.Accounts.Application.Commands.LoginUser;
 
-public class LoginUserHandler : ICommandHandler<LoginUserCommand, Result<string, ErrorList>>
+public class LoginUserHandler : ICommandHandler<LoginUserCommand, Result<UserDataDto, ErrorList>>
 {
     private readonly UserManager<User> _userManager;
     private readonly ILogger<User> _logger;
@@ -23,15 +24,15 @@ public class LoginUserHandler : ICommandHandler<LoginUserCommand, Result<string,
         _tokenProvider = tokenProvider;
     }
     
-    public async Task<Result<string, ErrorList>> Handle(
+    public async Task<Result<UserDataDto, ErrorList>> Handle(
         LoginUserCommand command, 
         CancellationToken cancellationToken = default)
     {
         var user = await _userManager
-            .FindByNameAsync(command.Username);
+            .FindByEmailAsync(command.Email);
         
         if (user == null)
-            return (ErrorList)Errors.User.NotFound(command.Username);
+            return (ErrorList)Errors.User.NotFound(command.Email);
         
         var passwordConfirmed = await _userManager.CheckPasswordAsync(user, command.Password);
         
@@ -41,7 +42,9 @@ public class LoginUserHandler : ICommandHandler<LoginUserCommand, Result<string,
         var accessToken = _tokenProvider.GenerateAccessToken(user);
         
         _logger.LogInformation("Login successfully");
+
+        var response = new UserDataDto(accessToken.AccessToken, user.Id);
         
-        return accessToken.AccessToken;
+        return response;
     }
 }

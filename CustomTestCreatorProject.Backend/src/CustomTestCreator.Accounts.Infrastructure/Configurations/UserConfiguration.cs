@@ -1,4 +1,5 @@
 using CustomTestCreator.Accounts.Domain.User;
+using CustomTestCreator.SharedKernel.ValueObjects.Id;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
